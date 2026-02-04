@@ -20,9 +20,25 @@ My recent work includes:
 Publications
 ======
 <ul>
-  {% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}
+{% for post in site.publications reversed %}
+  <li>
+    <b>{{ post.title }}</b><br />
+    {{ post.authors }}, {{ post.year }}<br />
+    {% if post.journal %}
+      <i>{{ post.journal }}</i>
+    {% elsif post.conference %}
+      <i>{{ post.conference }}</i>
+    {% elsif post.arxiv %}
+      <a href="{{ post.arxiv }}">arXiv preprint</a>
+    {% endif %}
+    {% if post.doi %}
+      | <a href="https://doi.org/{{ post.doi }}">DOI</a>
+    {% endif %}
+    {% if post.pdf %}
+      | <a href="{{ post.pdf | relative_url }}">PDF</a>
+    {% endif %}
+  </li>
+{% endfor %}
 </ul>
 
 
